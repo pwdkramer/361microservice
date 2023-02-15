@@ -1,0 +1,1 @@
+SELECT * FROM MAZES WHERE uuid = $1;

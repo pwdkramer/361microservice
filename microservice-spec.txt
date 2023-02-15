@@ -1,0 +1,40 @@
+What will the microservice do?
+    Provide CRUD operations for images.
+
+What kind of communication pipe will the microservice use?
+    A REST approach will be used.
+
+How will others request data from the microservice?, How will others receive data from the microservice?
+    Others will be able to use the microservice through 4 REST endpoints:
+
+    POST createLevel(uuid, image-base-64-png-string):
+        [HTTP RESPONSE CODE <--> Description <--> Return data]
+        201: If the uuid is unique and the image-base-64 string is valid   |   returns: (JSON: {message: 'Level created!'})
+        400: If the image-base-64-string is invalid                        |   returns: (JSON: {message: 'Invalid image provided!'})
+        409: If a level with the specified uuid already exists             |   returns: (JSON: {message: 'Level with specified uuid already exists!'})
+        500: Some error occurs (ie. Can't connect to db, etc.)             |   returns: (JSON: {message: 'A server-related error has occurred!'})
+
+    GET readLevel(uuid):
+        [HTTP RESPONSE CODE <--> Description <--> Return data]
+        200: Level with specified uuid found.                      |   returns: (JSON: {image-base64: "AAaaaaazzzz....."})
+        404: Level with specified uuid not found.                  |   returns: (JSON: {message: 'Level with specified uuid not found!'})
+        500: Some error occurs (ie. Can't connect to db, etc.)     |   returns: (JSON: {message: 'A server-related error has occurred!'})
+
+    POST updateLevel(uuid, image-base-64-png-string):
+        [HTTP RESPONSE CODE <--> Description <--> Return data]
+        200: If the level with the specified uuid exists and the image-base-64 string is valid   |   returns: (JSON: {message: 'Level updated!'})
+        404: Level with specified uuid not found.                                                |   returns: (JSON: {message: 'Level with specified uuid not found!'})
+        400: If the image-base-64-string is invalid                                              |   returns: (JSON: {message: 'Invalid image provided!'})
+        500: Some error occurs (ie. Can't connect to db, etc.)                                   |   returns: (JSON: {message: 'A server-related error has occurred!'})
+
+    POST deleteLevel(uuid):
+        [HTTP RESPONSE CODE <--> Description <--> Return data]
+        200: If the level with the specified uuid exists and was deleted   |   returns: (JSON: {message: 'Level deleted!'})
+        404: Level with specified uuid not found.                          |   returns: (JSON: {message: 'Level with specified uuid not found!'})
+        500: Some error occurs (ie. Can't connect to db, etc.)             |   returns: (JSON: {message: 'A server-related error has occurred!'})
+
+What is your partner's individual project?
+     A maze-game that allows users to play submitted levels.
+
+How will the microservice fit into your partner's individual project?
+     This microservice will provide CRUD functionality for the project. It provides a reliable level management method.
